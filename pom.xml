@@ -8,7 +8,6 @@
   <name>projectTest</name>
   <modules>
     <module>web</module>
-    <module>entity</module>
     <module>dao</module>
     <module>services</module>
   </modules>
