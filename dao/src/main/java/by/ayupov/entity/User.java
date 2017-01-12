@@ -66,7 +66,7 @@ public class User implements Serializable{
         return address;
     }
 
-    @Column(name = "phone_number", nullable = false, length = 11)
+    @Column(name = "phone_number", nullable = false)
     public int getPhone_number() {
         return phone_number;
     }
