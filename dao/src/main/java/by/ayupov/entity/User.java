@@ -20,6 +20,7 @@ public class User implements Serializable{
     private int phone_number;
     private long role_id;
     private Set<Role> roleSet = new HashSet<Role>(0);
+    private Set<Products> productsSet = new HashSet<Products>(0);
 
     public User() {
     }
@@ -123,6 +124,15 @@ public class User implements Serializable{
 
     public void setRoleSet(Set<Role> roleSet) {
         this.roleSet = roleSet;
+    }
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    public Set<Products> getProductsSet() {
+        return productsSet;
+    }
+
+    public void setProductsSet(Set<Products> productsSet) {
+        this.productsSet = productsSet;
     }
 
     @Override

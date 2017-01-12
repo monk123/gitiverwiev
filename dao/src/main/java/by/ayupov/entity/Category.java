@@ -1,6 +1,8 @@
 package by.ayupov.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "category", catalog = "mydb")
@@ -9,6 +11,17 @@ public class Category {
     private long category_id;
     private String categoryName;
     private String description;
+
+
+    public Set<Products> getProductsSet() {
+        return productsSet;
+    }
+
+    public void setProductsSet(Set<Products> productsSet) {
+        this.productsSet = productsSet;
+    }
+
+    private Set<Products> productsSet = new HashSet<Products>(0);
 
     public Category() {
     }
