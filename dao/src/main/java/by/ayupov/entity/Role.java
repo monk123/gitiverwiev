@@ -2,20 +2,27 @@ package by.ayupov.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "roles", catalog = "mydb")
 public class Role implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "role_id", nullable = false)
     private long role_id;
+
+    @Column(name = "role_name", nullable = false, length = 20)
     private String rolename;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     public Role() {
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "role_id", nullable = false)
     public long getRole_id() {
         return role_id;
     }
@@ -24,7 +31,6 @@ public class Role implements Serializable {
         this.role_id = role_id;
     }
 
-    @Column(name = "role_name", nullable = false, length = 20)
     public String getRolename() {
         return rolename;
     }

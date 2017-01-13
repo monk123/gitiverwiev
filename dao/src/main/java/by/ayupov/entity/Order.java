@@ -1,22 +1,27 @@
 package by.ayupov.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.sql.Date;
 
-@Entity
+@Embeddable
 @Table(name = "orders", catalog = "mydb")
 public class Order {
 
+    @Column(name = "orders_number", nullable = false)
     private int orderNumber;
+
+    @Column(name = "date", nullable = false)
     private Date date;
+
+    @Column(name = "orders_count", nullable = false)
     private int orderCount;
 
     public Order() {
     }
 
-    @Column(name = "orders_number", nullable = false)
     public int getOrderNumber() {
         return orderNumber;
     }
@@ -25,7 +30,6 @@ public class Order {
         this.orderNumber = orderNumber;
     }
 
-    @Column(name = "date", nullable = false)
     public Date getDate() {
         return date;
     }
@@ -34,7 +38,6 @@ public class Order {
         this.date = date;
     }
 
-    @Column(name = "orders_count", nullable = false)
     public int getOrderCount() {
         return orderCount;
     }

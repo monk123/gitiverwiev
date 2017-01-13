@@ -10,5 +10,15 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
+
+        <mapping class="by.ayupov.entity.User"/>
+        <mapping class="by.ayupov.entity.Role"/>
+        <mapping class="by.ayupov.entity.Products"/>
+        <mapping class="by.ayupov.entity.Order"/>
+        <mapping class="by.ayupov.entity.Category"/>
+        <mapping class="by.ayupov.entity.Price"/>
+        <mapping class="by.ayupov.entity.Rating"/>
+
     </session-factory>
 </hibernate-configuration>

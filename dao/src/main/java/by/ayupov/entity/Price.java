@@ -1,30 +1,38 @@
 package by.ayupov.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "price", catalog = "mydb")
 public class Price {
 
-    private long price_id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "price_id", nullable = false)
+    private long priceId;
+
+    @Column(name = "price_new", nullable = false)
     private int priceNew;
+
+    @Column(name = "price_old", nullable = false)
     private int priceOld;
+
+    @ManyToOne
+    @JoinColumn(name = "products_id", nullable = false)
+    private Products product;
 
     public Price() {
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "price_id", nullable = false)
-    public long getPrice_id() {
-        return price_id;
+    public long getPriceId() {
+        return priceId;
     }
 
-    public void setPrice_id(long price_id) {
-        this.price_id = price_id;
+    public void setPriceId(long priceId) {
+        this.priceId = priceId;
     }
 
-    @Column(name = "price_new", nullable = false)
     public int getPriceNew() {
         return priceNew;
     }
@@ -33,7 +41,6 @@ public class Price {
         this.priceNew = priceNew;
     }
 
-    @Column(name = "price_old", nullable = false)
     public int getPriceOld() {
         return priceOld;
     }

@@ -9,29 +9,44 @@ import java.util.Set;
 @Table(name = "products", catalog = "mydb")
 public class Products implements Serializable{
 
-    private long product_id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "products_id", nullable = false)
+    private long productId;
+
+    @Column(name = "articul", length = 20)
     private String articul;
+
+    @Column(name = "products_count")
     private int productsCount;
+
+    @Column(name = "description")
     private String description;
-    private Set<Rating> ratingSet = new HashSet<Rating>(0);
-    private Set<Price> priceSet = new HashSet<Price>(0);
-    private Set<User> userSet = new HashSet<User>(0);
+
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
+
+    @OneToMany(mappedBy = "product")
+    private Set<Rating> ratingSet;
+
+    @OneToMany(mappedBy = "product")
+    private Set<Price> priceSet;
+
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "productsSet")
+    private Set<User> userSet;
 
     public Products() {
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "products_id", nullable = false)
-    public long getProduct_id() {
-        return product_id;
+    public long getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(long product_id) {
-        this.product_id = product_id;
+    public void setProductId(long productId) {
+        this.productId = productId;
     }
 
-    @Column(name = "articul", length = 20)
     public String getArticul() {
         return articul;
     }
@@ -40,7 +55,6 @@ public class Products implements Serializable{
         this.articul = articul;
     }
 
-    @Column(name = "products_count")
     public int getProductsCount() {
         return productsCount;
     }
@@ -49,7 +63,6 @@ public class Products implements Serializable{
         this.productsCount = productsCount;
     }
 
-    @Column(name = "description")
     public String getDescription() {
         return description;
     }
@@ -58,7 +71,6 @@ public class Products implements Serializable{
         this.description = description;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "products")
     public Set<Rating> getRatingSet() {
         return ratingSet;
     }
@@ -67,7 +79,6 @@ public class Products implements Serializable{
         this.ratingSet = ratingSet;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "products")
     public Set<Price> getPriceSet() {
         return priceSet;
     }
@@ -76,7 +87,6 @@ public class Products implements Serializable{
         this.priceSet = priceSet;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
     public Set<User> getUserSet() {
         return userSet;
     }

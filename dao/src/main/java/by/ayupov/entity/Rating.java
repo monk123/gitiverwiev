@@ -1,21 +1,30 @@
 package by.ayupov.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "rating", catalog = "mydb")
 public class Rating {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "rating_id", nullable = false)
     private long rating_id;
+
+    @Column(name = "marks")
     private int marks;
+
+    @Column(name = "comment")
     private String comment;
+
+    @ManyToOne
+    @JoinColumn(name = "products_id", nullable = false)
+    private Products product;
 
     public Rating() {
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "rating_id", nullable = false)
     public long getRating_id() {
         return rating_id;
     }
@@ -24,7 +33,6 @@ public class Rating {
         this.rating_id = rating_id;
     }
 
-    @Column(name = "marks")
     public int getMarks() {
         return marks;
     }
@@ -33,7 +41,6 @@ public class Rating {
         this.marks = marks;
     }
 
-    @Column(name = "comment")
     public String getComment() {
         return comment;
     }
