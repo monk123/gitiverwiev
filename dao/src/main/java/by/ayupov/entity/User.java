@@ -127,6 +127,10 @@ public class User implements Serializable{
     }
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "orders", catalog = "mydb",
+            joinColumns = @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "products_id", referencedColumnName = "products_id")
+    )
     public Set<Products> getProductsSet() {
         return productsSet;
     }
