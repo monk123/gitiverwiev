@@ -2,7 +2,6 @@ package by.ayupov.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.sql.Date;
 

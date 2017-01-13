@@ -2,7 +2,6 @@ package by.ayupov.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -43,8 +42,8 @@ public class User implements Serializable {
 
     @ManyToMany
     @JoinTable(name = "orders", catalog = "mydb",
-            joinColumns = {@JoinColumn(name = "user_id", nullable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "products_id", nullable = false)}
+            joinColumns = { @JoinColumn(name = "user_id", nullable = false) },
+            inverseJoinColumns = { @JoinColumn(name = "products_id", nullable = false) }
     )
     private Set<Products> productsSet;
 

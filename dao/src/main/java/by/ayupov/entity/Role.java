@@ -2,7 +2,6 @@ package by.ayupov.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
 @Entity
 @Table(name = "roles", catalog = "mydb")
