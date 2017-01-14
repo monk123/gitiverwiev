@@ -44,4 +44,33 @@ public class Order {
     public void setOrderCount(int orderCount) {
         this.orderCount = orderCount;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Order order = (Order) o;
+
+        if (orderNumber != order.orderNumber) return false;
+        if (orderCount != order.orderCount) return false;
+        return date.equals(order.date);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = orderNumber;
+        result = 31 * result + date.hashCode();
+        result = 31 * result + orderCount;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderNumber=" + orderNumber +
+                ", date=" + date +
+                ", orderCount=" + orderCount +
+                '}';
+    }
 }

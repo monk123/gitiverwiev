@@ -1,4 +1,7 @@
 package by.ayupov.dao;
 
-public interface UserDao extends AbstractDao {
+import java.io.Serializable;
+
+public interface UserDao<T, ID extends Serializable> extends BaseDao<T, ID> {
+
 }

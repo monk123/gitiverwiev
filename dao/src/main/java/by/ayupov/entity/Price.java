@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Price {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "price_id", nullable = false)
     private long priceId;
 
@@ -46,5 +46,42 @@ public class Price {
 
     public void setPriceOld(int priceOld) {
         this.priceOld = priceOld;
+    }
+
+    public Products getProduct() {
+        return product;
+    }
+
+    public void setProduct(Products product) {
+        this.product = product;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Price price = (Price) o;
+
+        if (priceId != price.priceId) return false;
+        if (priceNew != price.priceNew) return false;
+        return priceOld == price.priceOld;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (priceId ^ (priceId >>> 32));
+        result = 31 * result + priceNew;
+        result = 31 * result + priceOld;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Price{" +
+                "priceId=" + priceId +
+                ", priceNew=" + priceNew +
+                ", priceOld=" + priceOld +
+                '}';
     }
 }

@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class Role implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "role_id", nullable = false)
     private long role_id;
 
@@ -36,5 +36,39 @@ public class Role implements Serializable {
 
     public void setRolename(String rolename) {
         this.rolename = rolename;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Role role = (Role) o;
+
+        if (role_id != role.role_id) return false;
+        return rolename.equals(role.rolename);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (role_id ^ (role_id >>> 32));
+        result = 31 * result + rolename.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "role_id=" + role_id +
+                ", rolename='" + rolename + '\'' +
+                '}';
     }
 }

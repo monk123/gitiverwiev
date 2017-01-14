@@ -9,7 +9,7 @@ import java.util.Set;
 public class Products implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "products_id", nullable = false)
     private long productId;
 
@@ -92,5 +92,45 @@ public class Products implements Serializable{
 
     public void setUserSet(Set<User> userSet) {
         this.userSet = userSet;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Products products = (Products) o;
+
+        if (productId != products.productId) return false;
+        if (productsCount != products.productsCount) return false;
+        if (!articul.equals(products.articul)) return false;
+        return description.equals(products.description);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (productId ^ (productId >>> 32));
+        result = 31 * result + articul.hashCode();
+        result = 31 * result + productsCount;
+        result = 31 * result + description.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Products{" +
+                "productId=" + productId +
+                ", articul='" + articul + '\'' +
+                ", productsCount=" + productsCount +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

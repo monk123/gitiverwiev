@@ -8,7 +8,7 @@ import java.util.Set;
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "category_id", nullable = false)
     private long category_id;
 
@@ -54,6 +54,26 @@ public class Category {
 
     public void setProductsSet(Set<Products> productsSet) {
         this.productsSet = productsSet;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Category category = (Category) o;
+
+        if (category_id != category.category_id) return false;
+        if (!categoryName.equals(category.categoryName)) return false;
+        return description.equals(category.description);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (category_id ^ (category_id >>> 32));
+        result = 31 * result + categoryName.hashCode();
+        result = 31 * result + description.hashCode();
+        return result;
     }
 
     @Override

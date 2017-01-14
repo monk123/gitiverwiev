@@ -8,9 +8,10 @@
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">pass</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.pool_size">10</property>
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
-        <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
 
         <mapping class="by.ayupov.entity.User"/>
         <mapping class="by.ayupov.entity.Role"/>

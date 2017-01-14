@@ -7,9 +7,10 @@ import java.util.Set;
 @Entity
 @Table(name = "users", catalog = "mydb")
 public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id", nullable = false)
     private long userId;
 
@@ -146,4 +147,50 @@ public class User implements Serializable {
         this.productsSet = productsSet;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (userId != user.userId) return false;
+        if (phone_number != user.phone_number) return false;
+        if (!surname.equals(user.surname)) return false;
+        if (!name.equals(user.name)) return false;
+        if (!email.equals(user.email)) return false;
+        if (!country.equals(user.country)) return false;
+        if (!region.equals(user.region)) return false;
+        if (!city.equals(user.city)) return false;
+        return address.equals(user.address);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (userId ^ (userId >>> 32));
+        result = 31 * result + surname.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + email.hashCode();
+        result = 31 * result + country.hashCode();
+        result = 31 * result + region.hashCode();
+        result = 31 * result + city.hashCode();
+        result = 31 * result + address.hashCode();
+        result = 31 * result + phone_number;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", surname='" + surname + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", country='" + country + '\'' +
+                ", region='" + region + '\'' +
+                ", city='" + city + '\'' +
+                ", address='" + address + '\'' +
+                ", phone_number=" + phone_number +
+                '}';
+    }
 }
