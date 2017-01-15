@@ -6,6 +6,7 @@
   <version>1.0</version>
   <packaging>pom</packaging>
   <name>projectTest</name>
+
   <modules>
     <module>web</module>
     <module>dao</module>

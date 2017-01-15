@@ -1,6 +1,8 @@
 package by.ayupov.dao;
 
+import by.ayupov.entity.Products;
+
 import java.io.Serializable;
 
-public interface ProductsDao<T, ID extends Serializable> extends BaseDao<T, ID> {
+public interface ProductsDao<Products> extends BaseDao<Products> {
 }

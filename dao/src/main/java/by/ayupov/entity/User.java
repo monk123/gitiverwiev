@@ -12,7 +12,7 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id", nullable = false)
-    private long userId;
+    private Long userId;
 
     @Column(name = "surname", nullable = false, length = 20)
     private String surname;
@@ -51,91 +51,83 @@ public class User implements Serializable {
     public User() {
     }
 
-    public long getUser_id() {
+    public Long getUserId() {
         return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getSurname() {
         return surname;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public String getRegion() {
-        return region;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public int getPhone_number() {
-        return phone_number;
-    }
-
-    public void setUser_id(long userId) {
-        this.userId = userId;
-    }
-
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getCountry() {
+        return country;
     }
 
     public void setCountry(String country) {
         this.country = country;
     }
 
+    public String getRegion() {
+        return region;
+    }
+
     public void setRegion(String region) {
         this.region = region;
+    }
+
+    public String getCity() {
+        return city;
     }
 
     public void setCity(String city) {
         this.city = city;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public int getPhone_number() {
+        return phone_number;
     }
 
     public void setPhone_number(int phone_number) {
         this.phone_number = phone_number;
     }
 
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
-    public Set<Role> getRoleSet() {
+    public Set<Role> getUserRole() {
         return userRole;
     }
 
-    public void setRoleSet(Set<Role> userRole) {
+    public void setUserRole(Set<Role> userRole) {
         this.userRole = userRole;
     }
 

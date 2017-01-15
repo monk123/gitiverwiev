@@ -19,6 +19,7 @@
     <junit.version>4.12</junit.version>
     <hibernate.core.version>5.2.5.Final</hibernate.core.version>
     <hibernate-validator.version>5.3.4.Final</hibernate-validator.version>
+    <hibernate-entitymanager.varsion>5.2.5.Final</hibernate-entitymanager.varsion>
     <log4j.version>1.2.17</log4j.version>
   </properties>
 
@@ -28,6 +29,12 @@
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
       <version>${log4j.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+      <version>${hibernate-entitymanager.varsion}</version>
     </dependency>
 
     <dependency>

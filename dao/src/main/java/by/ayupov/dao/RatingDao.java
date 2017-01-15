@@ -1,6 +1,8 @@
 package by.ayupov.dao;
 
+import by.ayupov.entity.Rating;
+
 import java.io.Serializable;
 
-public interface RatingDao<T, ID extends Serializable> extends BaseDao<T, ID> {
+public interface RatingDao<T> extends BaseDao<T> {
 }
