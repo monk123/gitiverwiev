@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: by.ayupov.AppTest
+Test set: by.ayupov.UserTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.015 sec
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.954 sec

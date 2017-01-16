@@ -1,7 +1,7 @@
 package by.ayupov.impl;
 
 import by.ayupov.UserService;
-import by.ayupov.dao.UserDao;
+import by.ayupov.crud.UserDao;
 import by.ayupov.exceptions.DaoException;
 import java.util.List;
 

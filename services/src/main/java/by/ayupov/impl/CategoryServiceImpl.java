@@ -1,7 +1,7 @@
 package by.ayupov.impl;
 
 import by.ayupov.CategoryService;
-import by.ayupov.dao.impl.CategoryDaoImpl;
+import by.ayupov.crud.impl.CategoryDaoImpl;
 import by.ayupov.exceptions.DaoException;
 
 import java.util.List;

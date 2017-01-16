@@ -1,7 +1,7 @@
 package by.ayupov.impl;
 
 import by.ayupov.PriceService;
-import by.ayupov.dao.PriceDao;
+import by.ayupov.crud.PriceDao;
 import by.ayupov.exceptions.DaoException;
 import java.util.List;
 

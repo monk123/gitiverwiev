@@ -1,7 +1,7 @@
 package by.ayupov.impl;
 
 import by.ayupov.RoleService;
-import by.ayupov.dao.impl.RoleDaoImpl;
+import by.ayupov.crud.impl.RoleDaoImpl;
 import by.ayupov.exceptions.DaoException;
 import java.util.List;
 

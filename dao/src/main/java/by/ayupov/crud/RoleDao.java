@@ -1,6 +1,4 @@
-package by.ayupov.dao;
-
-import java.io.Serializable;
+package by.ayupov.crud;
 
 public interface RoleDao<Role> extends BaseDao<Role> {
 }

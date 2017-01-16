@@ -1,7 +1,7 @@
-package by.ayupov.dao.impl;
+package by.ayupov.crud.impl;
 
-import by.ayupov.dao.OrderDao;
-import by.ayupov.entity.Order;
+import by.ayupov.crud.CategoryDao;
+import by.ayupov.entity.Category;
 import by.ayupov.exceptions.DaoException;
 import by.ayupov.util.HibernateSessionFactory;
 import org.apache.log4j.Logger;
@@ -10,8 +10,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import java.util.List;
 
-public class OrderDaoImpl<T> implements OrderDao<T>  {
-    private static final Logger logger = Logger.getLogger(OrderDaoImpl.class);
+public class CategoryDaoImpl<T> implements CategoryDao<T> {
+    private static final Logger logger = Logger.getLogger(CategoryDaoImpl.class);
 
     private Session currentSession;
     private Transaction transaction;
@@ -22,11 +22,11 @@ public class OrderDaoImpl<T> implements OrderDao<T>  {
             currentSession = HibernateSessionFactory.getSession();
             transaction = currentSession.beginTransaction();
 
-            tList = currentSession.createQuery("from Order").list();
+            tList = currentSession.createQuery("from Category").list();
             transaction.commit();
 
             for (T t : tList) {
-                logger.info("List order: " + t);
+                logger.info("List category: " + t);
             }
 
         } catch (HibernateException ex) {
@@ -44,10 +44,10 @@ public class OrderDaoImpl<T> implements OrderDao<T>  {
             currentSession = HibernateSessionFactory.getSession();
             transaction = currentSession.beginTransaction();
 
-            t = (T) currentSession.get(Order.class, id);
+            t = (T) currentSession.get(Category.class, id);
             transaction.commit();
 
-            logger.error("Order successfully found: " + t);
+            logger.error("Category successfully found: " + t);
         } catch (HibernateException ex) {
             logger.error("Error was throw id dao: " + t);
             transaction.rollback();
@@ -63,7 +63,7 @@ public class OrderDaoImpl<T> implements OrderDao<T>  {
             transaction = currentSession.beginTransaction();
             currentSession.save(entity);
             transaction.commit();
-            logger.info("Order successfully saved: " + entity);
+            logger.info("Category successfully saved: " + entity);
         } catch (HibernateException ex) {
             logger.error("Error was throw id dao: " + ex);
             transaction.rollback();
@@ -77,7 +77,7 @@ public class OrderDaoImpl<T> implements OrderDao<T>  {
             transaction = currentSession.beginTransaction();
             currentSession.update(entity);
             transaction.commit();
-            logger.info("Order successfully updated: " + entity);
+            logger.info("Category successfully updated: " + entity);
         } catch (HibernateException ex) {
             logger.error("Error was throw id dao: "  + entity);
             transaction.rollback();
@@ -90,12 +90,12 @@ public class OrderDaoImpl<T> implements OrderDao<T>  {
             currentSession = HibernateSessionFactory.getSession();
             transaction = currentSession.beginTransaction();
 
-            T t = (T) currentSession.get(Order.class, id);
+            T t = (T) currentSession.get(Category.class, id);
 
             if (t != null) currentSession.delete(t);
             transaction.commit();
 
-            logger.info("Order successfully deleted: " + t);
+            logger.info("Category successfully deleted: " + t);
         } catch (HibernateException ex) {
             logger.error("Error was throw id dao: " + ex);
             transaction.rollback();

@@ -1,7 +1,7 @@
 package by.ayupov.impl;
 
 import by.ayupov.OrderService;
-import by.ayupov.dao.impl.OrderDaoImpl;
+import by.ayupov.crud.impl.OrderDaoImpl;
 import by.ayupov.exceptions.DaoException;
 
 import java.util.List;

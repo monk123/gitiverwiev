@@ -1,6 +1,6 @@
-package by.ayupov.dao.impl;
+package by.ayupov.crud.impl;
 
-import by.ayupov.dao.ProductsDao;
+import by.ayupov.crud.ProductsDao;
 import by.ayupov.exceptions.DaoException;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;

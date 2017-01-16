@@ -1,7 +1,7 @@
-package by.ayupov.dao.impl;
+package by.ayupov.crud.impl;
 
-import by.ayupov.dao.RatingDao;
-import by.ayupov.entity.Rating;
+import by.ayupov.crud.UserDao;
+import by.ayupov.entity.User;
 import by.ayupov.exceptions.DaoException;
 import by.ayupov.util.HibernateSessionFactory;
 import org.apache.log4j.Logger;
@@ -10,13 +10,13 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import java.util.List;
 
-public class RatingDaoImpl<T> implements RatingDao<T> {
-    private static final Logger logger = Logger.getLogger(RatingDaoImpl.class);
+public class UserDaoImpl<T> implements UserDao<T> {
+    private static final Logger logger = Logger.getLogger(UserDaoImpl.class);
 
     private Session currentSession;
     private Transaction transaction;
 
-    public RatingDaoImpl() {
+    public UserDaoImpl() {
     }
 
     public List<T> getAll() throws DaoException {
@@ -25,11 +25,11 @@ public class RatingDaoImpl<T> implements RatingDao<T> {
             currentSession = HibernateSessionFactory.getSession();
             transaction = currentSession.beginTransaction();
 
-            tList = currentSession.createQuery("from Rating").list();
+            tList = currentSession.createQuery("from User").list();
             transaction.commit();
 
             for (T t : tList) {
-                logger.info("List price: " + t);
+                logger.info("List user: " + t);
             }
 
         } catch (HibernateException ex) {
@@ -47,10 +47,10 @@ public class RatingDaoImpl<T> implements RatingDao<T> {
             currentSession = HibernateSessionFactory.getSession();
             transaction = currentSession.beginTransaction();
 
-            t = (T) currentSession.get(Rating.class, id);
+            t = (T) currentSession.get(User.class, id);
             transaction.commit();
 
-            logger.error("Rating successfully found: " + t);
+            logger.error("User successfully found: " + t);
         } catch (HibernateException ex) {
             logger.error("Error was throw id dao: " + t);
             transaction.rollback();
@@ -66,7 +66,7 @@ public class RatingDaoImpl<T> implements RatingDao<T> {
             transaction = currentSession.beginTransaction();
             currentSession.save(entity);
             transaction.commit();
-            logger.info("Rating successfully saved: " + entity);
+            logger.info("User successfully saved: " + entity);
         } catch (HibernateException ex) {
             logger.error("Error was throw id dao: " + ex);
             transaction.rollback();
@@ -80,12 +80,13 @@ public class RatingDaoImpl<T> implements RatingDao<T> {
             transaction = currentSession.beginTransaction();
             currentSession.update(entity);
             transaction.commit();
-            logger.info("Rating successfully updated: " + entity);
+            logger.info("User successfully updated: " + entity);
         } catch (HibernateException ex) {
             logger.error("Error was throw id dao: "  + entity);
             transaction.rollback();
             throw new DaoException(ex);
         }
+
     }
 
     public void delete(Long id) throws DaoException {
@@ -93,12 +94,12 @@ public class RatingDaoImpl<T> implements RatingDao<T> {
             currentSession = HibernateSessionFactory.getSession();
             transaction = currentSession.beginTransaction();
 
-            T t = (T) currentSession.get(Rating.class, id);
+            T t = (T) currentSession.get(User.class, id);
 
             if (t != null) currentSession.delete(t);
             transaction.commit();
 
-            logger.info("Rating successfully deleted: " + t);
+            logger.info("User successfully deleted: " + t);
         } catch (HibernateException ex) {
             logger.error("Error was throw id dao: " + ex);
             transaction.rollback();
@@ -106,3 +107,4 @@ public class RatingDaoImpl<T> implements RatingDao<T> {
         }
     }
 }
+

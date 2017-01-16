@@ -1,6 +1,6 @@
 package by.ayupov;
 
-import by.ayupov.dao.impl.UserDaoImpl;
+import by.ayupov.crud.impl.UserDaoImpl;
 import by.ayupov.entity.User;
 import by.ayupov.exceptions.DaoException;
 import junit.framework.TestCase;
@@ -11,6 +11,7 @@ import java.util.List;
 
 
 public class UserTest extends TestCase {
+
     private static UserDaoImpl<User> userDao = new UserDaoImpl<User>();
     private static User user = new User();
 

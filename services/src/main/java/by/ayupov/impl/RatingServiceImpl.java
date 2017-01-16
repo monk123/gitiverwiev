@@ -1,7 +1,7 @@
 package by.ayupov.impl;
 
 import by.ayupov.RatingService;
-import by.ayupov.dao.impl.RatingDaoImpl;
+import by.ayupov.crud.impl.RatingDaoImpl;
 import by.ayupov.exceptions.DaoException;
 import java.util.List;
 

@@ -1,7 +1,7 @@
-package by.ayupov.dao.impl;
+package by.ayupov.crud.impl;
 
-import by.ayupov.dao.RoleDao;
-import by.ayupov.entity.Role;
+import by.ayupov.crud.PriceDao;
+import by.ayupov.entity.Price;
 import by.ayupov.exceptions.DaoException;
 import by.ayupov.util.HibernateSessionFactory;
 import org.apache.log4j.Logger;
@@ -10,8 +10,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import java.util.List;
 
-public class RoleDaoImpl<T> implements RoleDao<T> {
-    private static final Logger logger = Logger.getLogger(RoleDaoImpl.class);
+public class PriceDaoImpl<T> implements PriceDao<T> {
+    private static final Logger logger = Logger.getLogger(PriceDaoImpl.class);
 
     private Session currentSession;
     private Transaction transaction;
@@ -21,15 +21,16 @@ public class RoleDaoImpl<T> implements RoleDao<T> {
         try {
             currentSession = HibernateSessionFactory.getSession();
             transaction = currentSession.beginTransaction();
-            tList = currentSession.createQuery("from Role").list();
+
+            tList = currentSession.createQuery("from Price").list();
             transaction.commit();
 
             for (T t : tList) {
-                logger.info("Role list: " + t);
+                logger.info("List price: " + t);
             }
 
         } catch (HibernateException ex) {
-            logger.error("Error was throw id dao");
+            logger.info("Error was throw id dao: " + ex);
             transaction.rollback();
             throw new DaoException(ex);
         }
@@ -39,18 +40,20 @@ public class RoleDaoImpl<T> implements RoleDao<T> {
 
     public T getEntityById(Long id) throws DaoException {
         T t = null;
-
         try {
             currentSession = HibernateSessionFactory.getSession();
             transaction = currentSession.beginTransaction();
-            t = (T) currentSession.get(Role.class, id);
+
+            t = (T) currentSession.get(Price.class, id);
             transaction.commit();
-            logger.info("Role successfully found: " + t);
+
+            logger.error("Price successfully found: " + t);
         } catch (HibernateException ex) {
-            logger.error("Error was throw id dao: " + ex);
+            logger.error("Error was throw id dao: " + t);
             transaction.rollback();
             throw new DaoException(ex);
         }
+
         return t;
     }
 
@@ -60,13 +63,12 @@ public class RoleDaoImpl<T> implements RoleDao<T> {
             transaction = currentSession.beginTransaction();
             currentSession.save(entity);
             transaction.commit();
-            logger.info("Role successfully saved: " + entity);
+            logger.info("Price successfully saved: " + entity);
         } catch (HibernateException ex) {
-            logger.error("Error was throw in dao: " + ex);
+            logger.error("Error was throw id dao: " + ex);
             transaction.rollback();
             throw new DaoException(ex);
         }
-
     }
 
     public void update(T entity) throws DaoException {
@@ -75,27 +77,27 @@ public class RoleDaoImpl<T> implements RoleDao<T> {
             transaction = currentSession.beginTransaction();
             currentSession.update(entity);
             transaction.commit();
-            logger.info("Role successfully updated: " + entity);
+            logger.info("Price successfully updated: " + entity);
         } catch (HibernateException ex) {
-            logger.error("Error was throw in dao: " + ex);
+            logger.error("Error was throw id dao: "  + entity);
             transaction.rollback();
             throw new DaoException(ex);
         }
     }
 
     public void delete(Long id) throws DaoException {
-        T t = null;
         try {
             currentSession = HibernateSessionFactory.getSession();
             transaction = currentSession.beginTransaction();
-            t = (T) currentSession.get(Role.class, id);
+
+            T t = (T) currentSession.get(Price.class, id);
 
             if (t != null) currentSession.delete(t);
             transaction.commit();
 
-            logger.info("Role successfully deleted: " + t);
+            logger.info("Price successfully deleted: " + t);
         } catch (HibernateException ex) {
-            logger.error("Error was throw in dao: " + ex);
+            logger.error("Error was throw id dao: " + ex);
             transaction.rollback();
             throw new DaoException(ex);
         }
