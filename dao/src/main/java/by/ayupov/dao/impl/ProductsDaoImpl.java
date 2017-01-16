@@ -1,38 +1,35 @@
 package by.ayupov.dao.impl;
 
 import by.ayupov.dao.ProductsDao;
-import by.ayupov.entity.Products;
+import by.ayupov.exceptions.DaoException;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-
-import java.io.Serializable;
+import org.hibernate.Transaction;
 import java.util.List;
 
-public class ProductsDaoImpl<Products> implements ProductsDao<Products> {
-
+public class ProductsDaoImpl<T> implements ProductsDao<T> {
     private static final Logger logger = Logger.getLogger(ProductsDao.class);
 
-    private SessionFactory sessionFactory;
     private Session currentSession;
+    private Transaction transaction;
 
-    public List<Products> getAll() {
+    public List<T> getAll() throws DaoException {
         return null;
     }
 
-    public Products getEntityById(Long id) {
+    public T getEntityById(Long id) throws DaoException {
         return null;
     }
 
-    public void add(Products entity) {
+    public void add(T entity) throws DaoException {
 
     }
 
-    public void update(Products entity) {
+    public void update(T entity) throws DaoException {
 
     }
 
-    public void delete(Long id) {
+    public void delete(Long id) throws DaoException {
 
     }
 }

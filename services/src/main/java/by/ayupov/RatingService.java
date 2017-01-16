@@ -3,7 +3,7 @@ package by.ayupov;
 import by.ayupov.exceptions.DaoException;
 import java.util.List;
 
-public interface UserService<T> {
+public interface RatingService<T> {
     List<T> getAll() throws DaoException;
 
     T getEntityById(Long id) throws DaoException;

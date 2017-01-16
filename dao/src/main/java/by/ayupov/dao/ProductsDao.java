@@ -4,5 +4,5 @@ import by.ayupov.entity.Products;
 
 import java.io.Serializable;
 
-public interface ProductsDao<Products> extends BaseDao<Products> {
+public interface ProductsDao<T> extends BaseDao<T> {
 }

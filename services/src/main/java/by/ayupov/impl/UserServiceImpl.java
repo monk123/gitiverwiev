@@ -3,12 +3,14 @@ package by.ayupov.impl;
 import by.ayupov.UserService;
 import by.ayupov.dao.UserDao;
 import by.ayupov.exceptions.DaoException;
-
-import java.io.Serializable;
 import java.util.List;
 
 public class UserServiceImpl<T> implements UserService<T> {
     private UserDao<T> userDao;
+
+    public void setUserDao(UserDao<T> userDao) {
+        this.userDao = userDao;
+    }
 
     public List<T> getAll() throws DaoException {
         return userDao.getAll();

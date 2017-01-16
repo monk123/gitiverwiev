@@ -2,10 +2,11 @@ package by.ayupov.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.sql.Date;
 
-@Embeddable
+@Entity
 @Table(name = "orders", catalog = "mydb")
 public class Order {
 
