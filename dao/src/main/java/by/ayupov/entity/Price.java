@@ -1,60 +1,30 @@
 package by.ayupov.entity;
 
+import lombok.*;
+
 import javax.persistence.*;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "price", catalog = "mydb")
 public class Price {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "price_id", nullable = false)
+    @Column(name = "price_id")
     private long priceId;
 
-    @Column(name = "price_new", nullable = false)
+    @Column(name = "price_new")
     private int priceNew;
 
-    @Column(name = "price_old", nullable = false)
+    @Column(name = "price_old")
     private int priceOld;
 
     @ManyToOne
-    @JoinColumn(name = "products_id", nullable = false)
+    @JoinColumn(name = "products_id")
     private Products product;
-
-    public Price() {
-    }
-
-    public long getPriceId() {
-        return priceId;
-    }
-
-    public void setPriceId(long priceId) {
-        this.priceId = priceId;
-    }
-
-    public int getPriceNew() {
-        return priceNew;
-    }
-
-    public void setPriceNew(int priceNew) {
-        this.priceNew = priceNew;
-    }
-
-    public int getPriceOld() {
-        return priceOld;
-    }
-
-    public void setPriceOld(int priceOld) {
-        this.priceOld = priceOld;
-    }
-
-    public Products getProduct() {
-        return product;
-    }
-
-    public void setProduct(Products product) {
-        this.product = product;
-    }
 
     @Override
     public boolean equals(Object o) {

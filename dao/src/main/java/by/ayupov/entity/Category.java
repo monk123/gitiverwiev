@@ -1,18 +1,22 @@
 package by.ayupov.entity;
 
+import lombok.*;
 import javax.persistence.*;
 import java.util.Set;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor(staticName = "of")
 @Entity
-@Table(name = "category", catalog = "mydb")
+@Table(name = "category")
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "category_id", nullable = false)
+    @Column(name = "category_id")
     private long category_id;
 
-    @Column(name = "category_name", nullable = false, length = 45)
+    @Column(name = "category_name")
     private String categoryName;
 
     @Column(name = "description")
@@ -20,41 +24,6 @@ public class Category {
 
     @OneToMany(mappedBy = "category")
     private Set<Products> productsSet;
-
-    public Category() {
-    }
-
-    public long getCategory_id() {
-        return category_id;
-    }
-
-    public void setCategory_id(long category_id) {
-        this.category_id = category_id;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Set<Products> getProductsSet() {
-        return productsSet;
-    }
-
-    public void setProductsSet(Set<Products> productsSet) {
-        this.productsSet = productsSet;
-    }
 
     @Override
     public boolean equals(Object o) {

@@ -12,10 +12,7 @@ public class HibernateSessionFactory {
 
     private static final Logger logger = Logger.getLogger(HibernateSessionFactory.class);
 
-    private static SessionFactory sessionFactory;
-    private static ThreadLocal<Session> threadLocal = new ThreadLocal<Session>();
-
-    private static SessionFactory buildSessionFactory() {
+    public static SessionFactory buildSessionFactory() {
         try {
             StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder()
                     .configure("hibernate.cfg.xml").build();
@@ -26,20 +23,5 @@ public class HibernateSessionFactory {
             logger.error("Initial SessionFactory creation failed. " + ex);
             throw new ExceptionInInitializerError(ex);
         }
-    }
-
-    public static Session getSession() {
-        Session session = (Session) threadLocal.get();
-        if (session == null) {
-            session = getSessionFactory().openSession();
-        }
-        threadLocal.set(session);
-
-        return session;
-    }
-
-    public static SessionFactory getSessionFactory() {
-        if (sessionFactory == null) sessionFactory = buildSessionFactory();
-        return sessionFactory;
     }
 }

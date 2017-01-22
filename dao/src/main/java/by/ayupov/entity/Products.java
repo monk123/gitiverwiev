@@ -1,20 +1,27 @@
 package by.ayupov.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "products", catalog = "mydb")
+@Table(name = "products")
 public class Products implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "products_id", nullable = false)
+    @Column(name = "products_id")
     private long productId;
 
-    @Column(name = "articul", length = 20)
-    private String articul;
+    @Column(name = "article")
+    private String article;
 
     @Column(name = "products_count")
     private int productsCount;
@@ -23,7 +30,7 @@ public class Products implements Serializable{
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
+    @JoinColumn(name = "category_id")
     private Category category;
 
     @OneToMany(mappedBy = "product")
@@ -35,73 +42,6 @@ public class Products implements Serializable{
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "productsSet")
     private Set<User> userSet;
 
-    public Products() {
-    }
-
-    public long getProductId() {
-        return productId;
-    }
-
-    public void setProductId(long productId) {
-        this.productId = productId;
-    }
-
-    public String getArticul() {
-        return articul;
-    }
-
-    public void setArticul(String articul) {
-        this.articul = articul;
-    }
-
-    public int getProductsCount() {
-        return productsCount;
-    }
-
-    public void setProductsCount(int productsCount) {
-        this.productsCount = productsCount;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Set<Rating> getRatingSet() {
-        return ratingSet;
-    }
-
-    public void setRatingSet(Set<Rating> ratingSet) {
-        this.ratingSet = ratingSet;
-    }
-
-    public Set<Price> getPriceSet() {
-        return priceSet;
-    }
-
-    public void setPriceSet(Set<Price> priceSet) {
-        this.priceSet = priceSet;
-    }
-
-    public Set<User> getUserSet() {
-        return userSet;
-    }
-
-    public void setUserSet(Set<User> userSet) {
-        this.userSet = userSet;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -111,14 +51,14 @@ public class Products implements Serializable{
 
         if (productId != products.productId) return false;
         if (productsCount != products.productsCount) return false;
-        if (!articul.equals(products.articul)) return false;
+        if (!article.equals(products.article)) return false;
         return description.equals(products.description);
     }
 
     @Override
     public int hashCode() {
         int result = (int) (productId ^ (productId >>> 32));
-        result = 31 * result + articul.hashCode();
+        result = 31 * result + article.hashCode();
         result = 31 * result + productsCount;
         result = 31 * result + description.hashCode();
         return result;
@@ -128,7 +68,7 @@ public class Products implements Serializable{
     public String toString() {
         return "Products{" +
                 "productId=" + productId +
-                ", articul='" + articul + '\'' +
+                ", article='" + article + '\'' +
                 ", productsCount=" + productsCount +
                 ", description='" + description + '\'' +
                 '}';

@@ -1,14 +1,21 @@
 package by.ayupov.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "rating", catalog = "mydb")
+@Table(name = "rating")
 public class Rating {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "rating_id", nullable = false)
+    @Column(name = "rating_id")
     private long rating_id;
 
     @Column(name = "marks")
@@ -18,43 +25,8 @@ public class Rating {
     private String comment;
 
     @ManyToOne
-    @JoinColumn(name = "products_id", nullable = false)
+    @JoinColumn(name = "products_id")
     private Products product;
-
-    public Rating() {
-    }
-
-    public long getRating_id() {
-        return rating_id;
-    }
-
-    public void setRating_id(long rating_id) {
-        this.rating_id = rating_id;
-    }
-
-    public int getMarks() {
-        return marks;
-    }
-
-    public void setMarks(int marks) {
-        this.marks = marks;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public Products getProduct() {
-        return product;
-    }
-
-    public void setProduct(Products product) {
-        this.product = product;
-    }
 
     @Override
     public boolean equals(Object o) {
