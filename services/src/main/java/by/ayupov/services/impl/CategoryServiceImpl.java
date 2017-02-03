@@ -1,31 +1,10 @@
 package by.ayupov.services.impl;
 
-import by.ayupov.dao.impl.CategoryDaoImpl;
-import by.ayupov.exceptions.DaoException;
-import by.ayupov.services.CategoryService;
+import by.ayupov.entity.Category;
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-
-public class CategoryServiceImpl<T> implements CategoryService<T> {
-    private CategoryDaoImpl<T> categoryDao;
-
-    public List<T> getAll() throws DaoException {
-        return categoryDao.getAll();
-    }
-
-    public T getEntityById(Long id) throws DaoException {
-        return categoryDao.getEntityById(id);
-    }
-
-    public void add(T entity) throws DaoException {
-        categoryDao.add(entity);
-    }
-
-    public void update(T entity) throws DaoException {
-        categoryDao.update(entity);
-    }
-
-    public void delete(Long id) throws DaoException {
-        categoryDao.delete(id);
-    }
+@Service
+public class CategoryServiceImpl extends BaseServiceImpl<Category> {
+    private static final Logger log = Logger.getLogger(CategoryServiceImpl.class);
 }

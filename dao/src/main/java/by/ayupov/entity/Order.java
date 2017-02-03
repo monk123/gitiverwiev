@@ -1,9 +1,12 @@
 package by.ayupov.entity;
 
 import lombok.*;
+import lombok.extern.java.Log;
+
 import javax.persistence.*;
 import java.util.Date;
 
+@Log
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -11,20 +14,16 @@ import java.util.Date;
 @ToString
 @Entity
 @Table(name = "orders")
-public class Order {
+public class Order extends BaseEntity {
+    public static final long serialVersionUID = 7L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "orders")
-    private int orderId;
-
-    @Column(name = "orders_number")
+    @Column(name = "ORDER_NUMBER")
     private int orderNumber;
 
-    @Column(name = "date")
+    @Column(name = "DATE")
     @Temporal(TemporalType.TIME)
     private Date date;
 
-    @Column(name = "orders_count")
+    @Column(name = "ORDER_COUNT")
     private int orderCount;
 }

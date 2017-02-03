@@ -1,45 +1,46 @@
 package by.ayupov.entity;
 
 import lombok.*;
+import lombok.extern.java.Log;
+
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
+@Log
 @Data
 @NoArgsConstructor
-@AllArgsConstructor(staticName = "of")
+@AllArgsConstructor
 @Entity
 @Table(name = "category")
-public class Category {
+public class Category extends BaseEntity {
+    public static final long serialVersionUID = 8L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "category_id")
-    private long category_id;
-
-    @Column(name = "category_name")
+    @Column(name = "CATEGORY_NAME")
     private String categoryName;
 
-    @Column(name = "description")
+    @Column(name = "DESCRIPTION")
     private String description;
 
     @OneToMany(mappedBy = "category")
-    private Set<Products> productsSet;
+    private Set<Product> productsSet = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Category)) return false;
+        if (!super.equals(o)) return false;
 
         Category category = (Category) o;
 
-        if (category_id != category.category_id) return false;
         if (!categoryName.equals(category.categoryName)) return false;
         return description.equals(category.description);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (category_id ^ (category_id >>> 32));
+        int result = super.hashCode();
         result = 31 * result + categoryName.hashCode();
         result = 31 * result + description.hashCode();
         return result;
@@ -48,7 +49,6 @@ public class Category {
     @Override
     public String toString() {
         return "Category{" +
-                "category_id=" + category_id +
                 ", categoryName='" + categoryName + '\'' +
                 ", description='" + description + '\'' +
                 '}';

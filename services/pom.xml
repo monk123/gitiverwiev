@@ -2,6 +2,18 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
   <parent>
     <groupId>by.ayupov</groupId>
     <artifactId>projectTest</artifactId>
@@ -19,16 +31,48 @@
     <hibernate.core.version>5.2.5.Final</hibernate.core.version>
     <hibernate-validator.version>5.3.4.Final</hibernate-validator.version>
     <log4j.version>1.2.17</log4j.version>
+    <spring-core.version>4.3.5.RELEASE</spring-core.version>
+    <spring-web.version>4.3.5.RELEASE</spring-web.version>
+    <spring-webmvc.version>4.3.5.RELEASE</spring-webmvc.version>
+    <spring-tx.version>4.3.5.RELEASE</spring-tx.version>
   </properties>
 
   <dependencies>
 
+    <!-- log4j -->
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
       <version>${log4j.version}</version>
     </dependency>
 
+    <!-- Spring -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>${spring-core.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>${spring-web.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${spring-webmvc.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId>
+      <version>${spring-tx.version}</version>
+    </dependency>
+
+
+    <!-- Hibernate -->
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-validator</artifactId>
@@ -48,6 +92,7 @@
       <scope>test</scope>
     </dependency>
 
+    <!-- Ayupov dao -->
     <dependency>
       <groupId>by.ayupov</groupId>
       <artifactId>dao</artifactId>

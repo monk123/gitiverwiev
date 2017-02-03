@@ -3,46 +3,43 @@ package by.ayupov.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import lombok.extern.java.Log;
 import javax.persistence.*;
 
+@Log
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "rating")
-public class Rating {
+public class Rating extends BaseEntity {
+    public static final long serialVersionUID = 4L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "rating_id")
-    private long rating_id;
-
-    @Column(name = "marks")
+    @Column(name = "MARKS")
     private int marks;
 
-    @Column(name = "comment")
+    @Column(name = "COMMENT")
     private String comment;
 
-    @ManyToOne
-    @JoinColumn(name = "products_id")
-    private Products product;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "PRODUCT_ID")
+    private Product product;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Rating)) return false;
+        if (!super.equals(o)) return false;
 
         Rating rating = (Rating) o;
 
-        if (rating_id != rating.rating_id) return false;
         if (marks != rating.marks) return false;
         return comment.equals(rating.comment);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (rating_id ^ (rating_id >>> 32));
+        int result = super.hashCode();
         result = 31 * result + marks;
         result = 31 * result + comment.hashCode();
         return result;
@@ -51,7 +48,6 @@ public class Rating {
     @Override
     public String toString() {
         return "Rating{" +
-                "rating_id=" + rating_id +
                 ", marks=" + marks +
                 ", comment='" + comment + '\'' +
                 '}';

@@ -32,24 +32,29 @@
     <hibernate.core.version>5.2.5.Final</hibernate.core.version>
     <hibernate-validator.version>5.3.4.Final</hibernate-validator.version>
     <hibernate-entitymanager.varsion>5.2.5.Final</hibernate-entitymanager.varsion>
+    <hibernate-ehcache.version>5.2.5.Final</hibernate-ehcache.version>
     <log4j.version>1.2.17</log4j.version>
     <lombok.version>1.16.10</lombok.version>
+    <hibernate-ehcache-core.version>2.6.11</hibernate-ehcache-core.version>
   </properties>
 
   <dependencies>
 
+    <!-- lombok -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <version>${lombok.version}</version>
     </dependency>
 
+    <!-- log4j -->
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
       <version>${log4j.version}</version>
     </dependency>
 
+    <!-- hibernate -->
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-entitymanager</artifactId>
@@ -68,16 +73,31 @@
       <version>${hibernate.core.version}</version>
     </dependency>
 
+    <!-- junit -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>${junit.version}</version>
     </dependency>
 
+    <!-- mysql -->
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>${mysql-connector-java.version}</version>
+    </dependency>
+
+    <!-- hibernate cache -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-ehcache</artifactId>
+      <version>${hibernate-ehcache.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>net.sf.ehcache</groupId>
+      <artifactId>ehcache-core</artifactId>
+      <version>${hibernate-ehcache-core.version}</version>
     </dependency>
 
   </dependencies>

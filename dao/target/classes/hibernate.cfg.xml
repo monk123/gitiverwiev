@@ -4,18 +4,21 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mydb</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/project_test</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">pass</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.connection.pool_size">10</property>
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
 
         <mapping class="by.ayupov.entity.User"/>
+        <mapping class="by.ayupov.entity.BaseEntity"/>
+        <mapping class="by.ayupov.entity.Address"/>
         <mapping class="by.ayupov.entity.Role"/>
-        <mapping class="by.ayupov.entity.Products"/>
+        <mapping class="by.ayupov.entity.Product"/>
         <mapping class="by.ayupov.entity.Order"/>
         <mapping class="by.ayupov.entity.Category"/>
         <mapping class="by.ayupov.entity.Price"/>

@@ -3,52 +3,49 @@ package by.ayupov.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.java.Log;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
+
+@Log
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "roles")
-public class Role implements Serializable {
+@Table(name = "role")
+public class Role extends BaseEntity {
+    public static final long serialVersionUID = 3L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "role_id")
-    private long role_id;
-
-    @Column(name = "role_name")
-    private String rolename;
+    @Column(name = "ROLE_NAME")
+    private String roleName;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "USER_ID")
     private User user;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Role)) return false;
+        if (!super.equals(o)) return false;
 
         Role role = (Role) o;
 
-        if (role_id != role.role_id) return false;
-        return rolename.equals(role.rolename);
+        return roleName.equals(role.roleName);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (role_id ^ (role_id >>> 32));
-        result = 31 * result + rolename.hashCode();
+        int result = super.hashCode();
+        result = 31 * result + roleName.hashCode();
         return result;
     }
 
     @Override
     public String toString() {
         return "Role{" +
-                "role_id=" + role_id +
-                ", rolename='" + rolename + '\'' +
+                "roleName='" + roleName + '\'' +
                 '}';
     }
 }

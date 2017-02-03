@@ -1,46 +1,43 @@
 package by.ayupov.entity;
 
 import lombok.*;
-
+import lombok.extern.java.Log;
 import javax.persistence.*;
 
+@Log
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "price", catalog = "mydb")
-public class Price {
+@Table(name = "price")
+public class Price extends BaseEntity {
+    public static final long serialVersionUID = 6L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "price_id")
-    private long priceId;
-
-    @Column(name = "price_new")
+    @Column(name = "PRICE_NEW")
     private int priceNew;
 
-    @Column(name = "price_old")
+    @Column(name = "PRICE_OLD")
     private int priceOld;
 
-    @ManyToOne
-    @JoinColumn(name = "products_id")
-    private Products product;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "PRODUCT_ID")
+    private Product product;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Price)) return false;
+        if (!super.equals(o)) return false;
 
         Price price = (Price) o;
 
-        if (priceId != price.priceId) return false;
         if (priceNew != price.priceNew) return false;
         return priceOld == price.priceOld;
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (priceId ^ (priceId >>> 32));
+        int result = super.hashCode();
         result = 31 * result + priceNew;
         result = 31 * result + priceOld;
         return result;
@@ -49,7 +46,6 @@ public class Price {
     @Override
     public String toString() {
         return "Price{" +
-                "priceId=" + priceId +
                 ", priceNew=" + priceNew +
                 ", priceOld=" + priceOld +
                 '}';

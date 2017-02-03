@@ -1,66 +1,43 @@
 package by.ayupov.dao.impl;
 
-import by.ayupov.dao.ProductsDao;
-import by.ayupov.entity.Products;
-import by.ayupov.exceptions.DaoException;
-import lombok.extern.java.Log;
+import by.ayupov.entity.Product;
+import by.ayupov.exception.DaoException;
+import lombok.NoArgsConstructor;
+import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+
 import java.util.List;
 
-@Log
-public class ProductsDaoImpl<T> implements ProductsDao<T> {
-    private Session currentSession;
-    private SessionFactory sessionFactory;
+@NoArgsConstructor
+public class ProductsDaoImpl extends BaseDaoImpl<Product> {
+    private static final Logger log = Logger.getLogger(ProductsDaoImpl.class);
+    private static ProductsDaoImpl productsDao;
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public List<T> getAll() throws DaoException {
-        currentSession = sessionFactory.getCurrentSession();
-        List<T> list = currentSession.createQuery("from Products").list();
-        list.forEach(t -> log.info("Products list: " + t));
-        return list;
+    public static ProductsDaoImpl getInstance() {
+        if (productsDao == null) {
+            productsDao = new ProductsDaoImpl();
+        }
+
+        return productsDao;
     }
 
-    @Override
-    public T getEntityById(Long id) throws DaoException {
-        currentSession = sessionFactory.getCurrentSession();
-        T t =  (T) currentSession.load(Products.class, id);
-        log.info("Products successfully get by id: " + t);
-        return t;
-    }
+    public List<Product> pagintion(int pageNumber, int page) throws DaoException {
+        try {
+            Session session = getInstance().getSession();
+            Query query = session.createQuery("from Product")
+                    .setFirstResult(pageNumber)
+                    .setMaxResults(page);
+            List<Product> list = (List<Product>) query.list();
 
-    @Override
-    public void add(T entity) throws DaoException {
-        currentSession = sessionFactory.getCurrentSession();
-        currentSession.save(entity);
-        log.info("Product successfully save: " + entity);
-    }
+            if (list != null) list.forEach(product -> log.info("Pagination product: " + product));
 
-    @Override
-    public void update(T entity) throws DaoException {
-        currentSession = sessionFactory.getCurrentSession();
-        currentSession.update(entity);
-        log.info("Products successfully update: " + entity);
-    }
-
-    @Override
-    public void delete(Long id) throws DaoException {
-        currentSession = sessionFactory.getCurrentSession();
-        T t = (T) currentSession.get(Products.class, id);
-
-        if (t != null) currentSession.delete(id);
-
-        log.info("Products successfully delete: " + id);
-    }
-
-    @Override
-    public Session getSession() {
-        return null;
-    }
-
-    @Override
-    public SessionFactory getSessionFactory() {
-        return null;
+            return list;
+        } catch (HibernateException ex) {
+            log.error("Error pagination Entity: " + ex);
+            throw new DaoException(ex);
+        }
     }
 }
