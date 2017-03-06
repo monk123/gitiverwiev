@@ -1,9 +1,9 @@
 package by.ayupov.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.java.Log;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +11,6 @@ import java.util.Set;
 @Log
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "product")
 public class Product extends BaseEntity {
@@ -29,15 +28,25 @@ public class Product extends BaseEntity {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @ManyToOne
+    @Column(name = "PRICE")
+    private Integer price;
+
+    @Column(name = "CATEGORY_NAME")
+    private String categoryName;
+
+    @Column(name = "PHOTO")
+    private String photo;
+
+    /*@ManyToOne
     @JoinColumn(name = "CATEGORY_ID")
-    private Category category;
+    private Category category;*/
 
     @OneToMany(mappedBy = "product")
     private Set<Rating> ratingSet = new HashSet<>();
 
-    @OneToMany(mappedBy = "product", cascade = {CascadeType.ALL})
-    private Set<Price> priceSet = new HashSet<>();
+   /* @ManyToOne
+    @JoinColumn(name = "PRICE_ID")
+    private Price price;*/
 
     @ManyToMany(mappedBy = "productsSet")
     private Set<User> userSet = new HashSet<>();
@@ -53,6 +62,9 @@ public class Product extends BaseEntity {
         if (productCount != product.productCount) return false;
         if (!name.equals(product.name)) return false;
         if (!article.equals(product.article)) return false;
+        if (!photo.equals(product.photo)) return false;
+        if (price != product.price) return false;
+        if (!categoryName.equals(product.categoryName)) return false;
         return description.equals(product.description);
     }
 
@@ -63,6 +75,9 @@ public class Product extends BaseEntity {
         result = 31 * result + article.hashCode();
         result = 31 * result + productCount;
         result = 31 * result + description.hashCode();
+        result = 31 * result + price;
+        result = 31 * result + categoryName.hashCode();
+        result = 31 * result + photo.hashCode();
         return result;
     }
 
@@ -73,6 +88,9 @@ public class Product extends BaseEntity {
                 ", article='" + article + '\'' +
                 ", productsCount=" + productCount +
                 ", description='" + description + '\'' +
+                ", description='" + categoryName + '\'' +
+                ", description='" + price + '\'' +
+                ", description='" + photo + '\'' +
                 '}';
     }
 }

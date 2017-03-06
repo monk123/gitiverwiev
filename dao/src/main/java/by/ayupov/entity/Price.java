@@ -3,6 +3,8 @@ package by.ayupov.entity;
 import lombok.*;
 import lombok.extern.java.Log;
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Log
 @Data
@@ -19,9 +21,8 @@ public class Price extends BaseEntity {
     @Column(name = "PRICE_OLD")
     private int priceOld;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "PRODUCT_ID")
-    private Product product;
+    /*@OneToMany(mappedBy = "price")
+    private Set<Product> priceSet = new HashSet<>();*/
 
     @Override
     public boolean equals(Object o) {

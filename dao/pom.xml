@@ -36,9 +36,43 @@
     <log4j.version>1.2.17</log4j.version>
     <lombok.version>1.16.10</lombok.version>
     <hibernate-ehcache-core.version>2.6.11</hibernate-ehcache-core.version>
+    <hibernate-entitymanager.version>5.2.5.Final</hibernate-entitymanager.version>
+    <spring-core.version>4.3.5.RELEASE</spring-core.version>
+    <spring-web.version>4.3.5.RELEASE</spring-web.version>
+    <spring-webmvc.version>4.3.5.RELEASE</spring-webmvc.version>
+    <spring-tx.version>4.3.5.RELEASE</spring-tx.version>
+    <spring-context.version>4.3.5.RELEASE</spring-context.version>
+    <spring-beans.version>4.3.5.RELEASE</spring-beans.version>
+    <spring-test.version>4.3.5.RELEASE</spring-test.version>
+    <spring-aop.version>4.3.5.RELEASE</spring-aop.version>
+    <spring-context-support.version>4.3.5.RELEASE</spring-context-support.version>
+    <spring-orm.version>4.3.5.RELEASE</spring-orm.version>
+    <spring-expression.version>4.3.5.RELEASE</spring-expression.version>
+    <commons-dbcp.version>1.4</commons-dbcp.version>
+    <cglib.version>3.1</cglib.version>
+    <aspectjweaver.version>1.8.1</aspectjweaver.version>
+    <hibernate-jpa-2.1-api.version>1.0.0.Final</hibernate-jpa-2.1-api.version>
   </properties>
 
   <dependencies>
+
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>${aspectjweaver.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-dbcp</groupId>
+      <artifactId>commons-dbcp</artifactId>
+      <version>${commons-dbcp.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cglib</groupId>
+      <artifactId>cglib</artifactId>
+      <version>${cglib.version}</version>
+    </dependency>
 
     <!-- lombok -->
     <dependency>
@@ -55,6 +89,14 @@
     </dependency>
 
     <!-- hibernate -->
+
+    <dependency>
+      <groupId>org.hibernate.javax.persistence</groupId>
+      <artifactId>hibernate-jpa-2.1-api</artifactId>
+      <version>${hibernate-jpa-2.1-api.version}</version>
+    </dependency>
+
+
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-entitymanager</artifactId>
@@ -100,5 +142,77 @@
       <version>${hibernate-ehcache-core.version}</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+      <version>${hibernate-entitymanager.varsion}</version>
+    </dependency>
+
+    <!-- spring -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>${spring-core.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>${spring-web.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${spring-webmvc.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId>
+      <version>${spring-tx.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>${spring-context.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
+      <version>${spring-beans.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>${spring-test.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aop</artifactId>
+      <version>${spring-aop.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context-support</artifactId>
+      <version>${spring-context-support.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-orm</artifactId>
+      <version>${spring-orm.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-expression</artifactId>
+      <version>${spring-expression.version}</version>
+    </dependency>
   </dependencies>
 </project>

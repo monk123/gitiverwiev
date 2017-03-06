@@ -1,5 +1,6 @@
 package by.ayupov.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @MappedSuperclass
 public class BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -14,9 +16,5 @@ public class BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private Long id;
-
-    @Column(name = "VERSION")
-    @Version
-    private Long version;
+    private Integer id;
 }

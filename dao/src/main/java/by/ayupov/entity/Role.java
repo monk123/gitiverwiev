@@ -1,12 +1,12 @@
 package by.ayupov.entity;
 
+import by.ayupov.enums.UserProfileType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.java.Log;
 
 import javax.persistence.*;
-
 
 @Log
 @Data
@@ -18,11 +18,7 @@ public class Role extends BaseEntity {
     public static final long serialVersionUID = 3L;
 
     @Column(name = "ROLE_NAME")
-    private String roleName;
-
-    @ManyToOne
-    @JoinColumn(name = "USER_ID")
-    private User user;
+    private String roleName = UserProfileType.USER.getType();
 
     @Override
     public boolean equals(Object o) {

@@ -4,5 +4,7 @@ by\ayupov\services\impl\ProductsServiceImpl.class
 by\ayupov\services\impl\RatingServiceImpl.class
 by\ayupov\services\impl\CategoryServiceImpl.class
 by\ayupov\services\interfaces\BaseService.class
+by\ayupov\services\impl\AddressServiceImpl.class
 by\ayupov\services\impl\UserServiceImpl.class
 by\ayupov\services\impl\PriceServiceImpl.class
+by\ayupov\services\impl\BaseServiceImpl.class

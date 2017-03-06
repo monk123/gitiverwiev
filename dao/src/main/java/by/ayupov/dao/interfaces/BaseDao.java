@@ -1,37 +1,37 @@
 package by.ayupov.dao.interfaces;
 
-import by.ayupov.exception.DaoException;
 import java.util.List;
 
 public interface BaseDao<T> {
+
     /**
      * get all users
      * @return
      */
-    List<T> getAll() throws DaoException;
-
+    List<T> getAll();
+    
     /**
      * get user by id
      * @param id
      */
-    T getEntityById(Long id) throws DaoException;
+    T getEntityById(Integer id);
 
     /**
      * save user in DB
      * @param entity
      * @return
      */
-    void add(T entity) throws DaoException;
+    void add(T entity);
 
     /**
      * update information about entity
      * @param entity
      */
-    void update(T entity) throws DaoException;
+    void update(T entity);
 
     /**
      * delete entity
      * @param id
      */
-    void delete(Long id) throws DaoException;
+    void delete(Integer id);
 }

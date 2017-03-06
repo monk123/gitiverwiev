@@ -1,9 +1,10 @@
 package by.ayupov.entity;
 
-import lombok.AllArgsConstructor;
+import by.ayupov.enums.State;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.java.Log;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +12,6 @@ import java.util.Set;
 @Log
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "user")
 public class User extends BaseEntity {
@@ -32,17 +32,30 @@ public class User extends BaseEntity {
     @Column(name = "PASSWORD")
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    @ManyToMany
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "USER_ID"),
+    inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
     private Set<Role> userRole = new HashSet<>();
+
+    @Column(name="STATE", nullable=false)
+    private String state = State.ACTIVE.getState();
 
     @OneToMany(mappedBy = "address")
     private Set<Address> addressSet = new HashSet<>();
 
+    public User(Integer id, String surname, String name, String email, int phoneNumber, String password) {
+        super(id);
+        this.surname = surname;
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.password = password;
+    }
+
     @ManyToMany
     @JoinTable(name = "orders",
             joinColumns = {@JoinColumn(name = "USER_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "PRODUCT_ID")}
-    )
+            inverseJoinColumns = {@JoinColumn(name = "PRODUCT_ID")})
     private Set<Product> productsSet = new HashSet<>();
 
     @Override

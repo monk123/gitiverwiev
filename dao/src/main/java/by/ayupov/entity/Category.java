@@ -23,8 +23,8 @@ public class Category extends BaseEntity {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @OneToMany(mappedBy = "category")
-    private Set<Product> productsSet = new HashSet<>();
+   /* @OneToMany(mappedBy = "category")
+    private Set<Product> productsSet = new HashSet<>();*/
 
     @Override
     public boolean equals(Object o) {

@@ -1,0 +1,27 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns="http://www.w3.org/1999/xhtml" version="2.0"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <div class="col-md-9">
+        <div class="row">
+            <c:forEach var="product" items="${products}">
+                <div class="col-xs-12">
+                    <img  src="${product.photo}"/>
+                    <div class="caption">
+                        <h4 class="pull-right"></h4>
+                        <h4><a href="#">${product.name}</a></h4>
+                        <p>${product.description}><a target="_blank" href=""></a></p>
+                        <div class="ratings">
+                            <p class="pull-right"></p>
+                            <p>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+    </div>
+</jsp:root>

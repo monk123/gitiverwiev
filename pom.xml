@@ -23,9 +23,16 @@
     <log4j.version>1.2.17</log4j.version>
     <lombok.version>1.16.10</lombok.version>
     <spring-core.version>4.3.5.RELEASE</spring-core.version>
+    <spring-test.version>4.3.5.RELEASE</spring-test.version>
     <spring-web.version>4.3.5.RELEASE</spring-web.version>
     <spring-webmvc.version>4.3.5.RELEASE</spring-webmvc.version>
     <spring-tx.version>4.3.5.RELEASE</spring-tx.version>
+    <spring-security.version>4.0.3.RELEASE</spring-security.version>
+    <spring-exspression.version>4.2.1.RELEASE</spring-exspression.version>
+    <spring-security.taglibs.version>4.2.1.RELEASE</spring-security.taglibs.version>
+    <aspectj.version>1.8.4</aspectj.version>
+    <cglib.version>3.1</cglib.version>
+    <commons-lang3>3.5</commons-lang3>
   </properties>
 
   <dependencies>
@@ -33,8 +40,50 @@
     <!-- Spring -->
     <dependency>
       <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>${spring-test.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-core</artifactId>
+      <version>${spring-security.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
+      <version>${spring-security.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <version>${spring-security.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-expression</artifactId>
+      <version>${spring-exspression.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <version>${spring-security.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
       <version>${spring-core.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-taglibs</artifactId>
+      <version>${spring-security.taglibs.version}</version>
     </dependency>
 
     <dependency>
@@ -55,18 +104,21 @@
       <version>${spring-tx.version}</version>
     </dependency>
 
+    <!-- Lombok -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <version>${lombok.version}</version>
     </dependency>
 
+    <!-- log4j -->
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
       <version>${log4j.version}</version>
     </dependency>
 
+    <!-- Hibernate -->
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-entitymanager</artifactId>
@@ -85,16 +137,39 @@
       <version>${hibernate.core.version}</version>
     </dependency>
 
+    <!-- Junit -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>${junit.version}</version>
     </dependency>
 
+    <!-- mysql connerctor -->
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>${mysql-connector-java.version}</version>
+    </dependency>
+
+    <!-- apache commons -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>${commons-lang3}</version>
+    </dependency>
+
+    <!--CgLib-->
+    <dependency>
+      <groupId>cglib</groupId>
+      <artifactId>cglib</artifactId>
+      <version>${cglib.version}</version>
+    </dependency>
+
+    <!--AspectJ-->
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>${aspectj.version}</version>
     </dependency>
   </dependencies>
 

@@ -1,43 +1,79 @@
 package by.ayupov.dao.impl;
 
+import by.ayupov.dao.interfaces.ProductDao;
 import by.ayupov.entity.Product;
-import by.ayupov.exception.DaoException;
-import lombok.NoArgsConstructor;
-import org.apache.log4j.Logger;
-import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
+import lombok.extern.java.Log;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@NoArgsConstructor
-public class ProductsDaoImpl extends BaseDaoImpl<Product> {
-    private static final Logger log = Logger.getLogger(ProductsDaoImpl.class);
-    private static ProductsDaoImpl productsDao;
+/**
+ * Implementation of {@link ProductDao} interface
+ *
+ * @author Vadim Ayupov
+ */
+@Repository
+@Log
+public class ProductsDaoImpl implements ProductDao {
+    private SessionFactory sessionFactory;
 
-    public static ProductsDaoImpl getInstance() {
-        if (productsDao == null) {
-            productsDao = new ProductsDaoImpl();
-        }
-
-        return productsDao;
+    @Autowired
+    public ProductsDaoImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
-    public List<Product> pagintion(int pageNumber, int page) throws DaoException {
-        try {
-            Session session = getInstance().getSession();
-            Query query = session.createQuery("from Product")
-                    .setFirstResult(pageNumber)
-                    .setMaxResults(page);
-            List<Product> list = (List<Product>) query.list();
+    private Session currentSession() {
+        return sessionFactory.getCurrentSession();
+    }
 
-            if (list != null) list.forEach(product -> log.info("Pagination product: " + product));
+    @Override
+    public List<Product> paginationProduct(int firstResult, int maxResult) {
+        return currentSession()
+                .createQuery("from Product")
+                .setFirstResult(firstResult)
+                .setMaxResults(maxResult)
+                .list();
+    }
 
-            return list;
-        } catch (HibernateException ex) {
-            log.error("Error pagination Entity: " + ex);
-            throw new DaoException(ex);
-        }
+    @Override
+    public List<Product> getAll() {
+        return currentSession().createQuery("from Product").list();
+    }
+
+    @Override
+    public Product getEntityById(Integer id) {
+        return currentSession().get(Product.class, id);
+    }
+
+    @Override
+    public void add(Product entity) {
+        currentSession().save(entity);
+    }
+
+    @Override
+    public void update(Product entity) {
+        currentSession().update(entity);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        Product product = (Product) currentSession().get(Product.class, id);
+        if (product != null) currentSession().delete(product);
+    }
+
+    public List<Product> getPaginationProductByCategory(String categoryName, int firstResult, int maxResult) {
+       return currentSession().createQuery("from Product p where p.categoryName=:categoryName")
+                .setParameter("categoryName", categoryName)
+                .setFirstResult(firstResult)
+                .setMaxResults(maxResult)
+                .list();
+    }
+
+    @Override
+    public List<Product> findProductByCategory() {
+        return currentSession().createQuery("select distinct p.categoryName from Product p").list();
     }
 }

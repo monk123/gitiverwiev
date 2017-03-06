@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+    <definition name="default" template="/WEB-INF/views/client/layouts/default.jspx">
+        <put-attribute name="footer" value="/WEB-INF/views/client/commons/footer.jspx"/>
+        <put-attribute name="body" value=""/>
+    </definition>
+
+    <definition name="homes" extends="default">
+        <put-attribute name="footer" value="/WEB-INF/views/client/commons/footer.jspx"/>
+        <put-attribute name="body" value="/WEB-INF/views/client/welcome/homes.jspx"/>
+    </definition>
+
+    <definition name="products/product" extends="default">
+        <put-attribute name="body" value="/WEB-INF/views/client/products/product.jspx"/>
+    </definition>
+
+    <definition name="person/persons" extends="default">
+        <put-attribute name="body" value="/WEB-INF/views/client/person/persons.jspx"/>
+    </definition>
+</tiles-definitions>
