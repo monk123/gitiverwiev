@@ -1,0 +1,28 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns="http://www.w3.org/1999/xhtml" version="2.0"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:s="http://www.springframework.org/tags/form"
+          xmlns:spring="http://www.springframework.org/tags">
+    <html>
+    <head><title>Title</title></head>
+    <body>
+    <div class="container">
+        <c:url value="/j_spring_security_check" var="loginUrl"/>
+        <s:form class="form-signin" method="post" action="${loginUrl}">
+            <h2 class="form-signin-heading">Please sign in</h2>
+            <label for="inputEmail" class="sr-only"><spring:message code="label.login.email"/></label>
+            <s:input type="email" id="inputEmail" name="j_username" class="form-control" placeholder="Email address" path="email"/>
+            <label for="inputPassword" class="sr-only"><spring:message code="label.login.password"/></label>
+            <s:input type="password" name="j_password" id="inputPassword" class="form-control" placeholder="Password" required="required" path="password"/>
+                <div class="checkbox">
+                    <label for="remember_me" class="inline">
+                        <input id="remember_me" name="_spring_security_remember_me" type="checkbox" value="remember-me"/>Remember me
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit"><spring:message code="label_contact_signin_us"/></button>
+            <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}"/><jsp:text/>
+        </s:form>
+    </div>
+    </body>
+    </html>
+</jsp:root>

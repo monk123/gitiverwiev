@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
     <html>
     <head>
         <meta charset="utf-8">
@@ -23,20 +23,20 @@
     </head>
     <body>
     <div class="container">
-        <c:url value="/j_spring_security_check" var="loginUrl"/>
+        <s:url value="/j_spring_security_check" var="loginUrl"/>
         <form class="form-signin" method="post" action="${loginUrl}">
             <h2 class="form-signin-heading">Please sign in</h2>
             <label for="inputEmail" class="sr-only">Email address</label>
-            <input type="email" id="inputEmail" name="username-parameter" class="form-control" placeholder="Email address" required autofocus>
+            <input type="email" id="inputEmail" name="j_username" class="form-control" placeholder="Email address" required autofocus>
             <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" name="password-parameter" id="inputPassword" class="form-control" placeholder="Password" required>
+            <input type="password" name="j_password" id="inputPassword" class="form-control" placeholder="Password" required>
             <div class="checkbox">
                 <label for="remember_me" class="inline">
                     <input id="remember_me" name="_spring_security_remember_me"
                            type="checkbox" value="remember-me"> Remember me
                 </label>
             </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sing In</button>
+            <button href="<c:url value="/index"/>" class="btn btn-lg btn-primary btn-block" type="submit">Sing In</button>
             <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}"><jsp:text/>
         </form>
     </div>

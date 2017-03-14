@@ -1,0 +1,47 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns="http://www.w3.org/1999/xhtml" version="2.0"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:s="http://www.springframework.org/tags/form"
+          xmlns:spring="http://www.springframework.org/tags">
+    <div class="col-md-6">
+        <img class="img-responsive" src="${product.photo}" alt=""/>
+    </div>
+    <div class="col-md-6">
+        <div>
+            <h3>${product.name}</h3>
+            <p>${product.price} $</p>
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><spring:message code="data.quantity"/></span>
+                        <s:input id="quantity-input" type="text" class="form-control" placeholder="0" aria-describedby="quantity-input" path="quantity"/>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <c:url var="prodId" value='/bucket/product/${product.id}'/>
+                    <a href="${prodId}">
+                    <button id="add-to-basket-btn" data-product-code="" type="button"
+                            class="btn btn-primary btn-md" data-toggle="modal" data-target="#success-modal"><spring:message code="data.add.basket"/>
+                    </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <table class="table">
+                <thead><spring:message code="data.product.details"/></thead>
+                <tbody>
+                <tr>
+                    <td><spring:message code="data.product.article"/></td>
+                    <td>${product.article}</td>
+                </tr>
+                <tr>
+                    <td><spring:message code="data.product.description"/></td>
+                    <td>${product.description}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</jsp:root>

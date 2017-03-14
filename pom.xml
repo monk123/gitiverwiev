@@ -30,14 +30,29 @@
     <spring-security.version>4.0.3.RELEASE</spring-security.version>
     <spring-exspression.version>4.2.1.RELEASE</spring-exspression.version>
     <spring-security.taglibs.version>4.2.1.RELEASE</spring-security.taglibs.version>
+    <spring-data-jpa.version>1.10.5.RELEASE</spring-data-jpa.version>
     <aspectj.version>1.8.4</aspectj.version>
     <cglib.version>3.1</cglib.version>
     <commons-lang3>3.5</commons-lang3>
+    <jackson.version>1.9.13</jackson.version>
   </properties>
 
   <dependencies>
 
+    <dependency>
+      <groupId>org.codehaus.jackson</groupId>
+      <artifactId>jackson-mapper-lgpl</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+
     <!-- Spring -->
+
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-jpa</artifactId>
+      <version>${spring-data-jpa.version}</version>
+    </dependency>
+
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>

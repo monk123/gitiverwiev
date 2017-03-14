@@ -29,15 +29,15 @@ public class AuthService implements UserDetailsService {
     private UserService userService;
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        User user = userService.findUserByName(s);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userService.findUserByName(email);
         log.info("User: " + user);
         if (user == null) {
             log.info("User not found");
             throw new UsernameNotFoundException("Username not found");
         }
 
-        return new MvcUser(user. getName(), user.getSurname(), user.getEmail(), user.getPassword(),
+        return new MvcUser(user.getName(), user.getSurname(), user.getEmail(), user.getPassword(),
         State.ACTIVE.getState().equals(user.getState()),true, true, true, getGrantedAuthorities(user));
     }
 

@@ -1,0 +1,21 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns="http://www.w3.org/1999/xhtml" version="2.0"
+          xmlns:tiles="http://tiles.apache.org/tags-tiles">
+    <html>
+    <head><title>Title</title></head>
+    <body>
+    <nav class="navbar navbar-inverse navbar navbar-fixed-top" role="navigation">
+        <div class="container">
+            <tiles:insertAttribute name="header"/>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <tiles:insertAttribute name="body"/>
+        </div>
+    </div>
+    <footer>
+        <tiles:insertAttribute name="footer"/>
+    </footer>
+    </body>
+    </html>
+</jsp:root>

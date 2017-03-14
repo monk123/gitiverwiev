@@ -1,7 +1,6 @@
 package by.ayupov.dao.impl;
 
 import java.util.List;
-
 import by.ayupov.dao.interfaces.UserDao;
 import by.ayupov.entity.User;
 import lombok.extern.java.Log;
@@ -30,10 +29,13 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User findUserByName(String name) {
-        return (User) currentSession().createQuery("from User where name=:name")
-                .setParameter("name", name)
-                .uniqueResult();
+    public User findUserByName(String email) {
+        List<User> list = currentSession().createQuery("from User u where u.email=:email")
+                .setParameter("email", email)
+                .list();
+
+        System.out.println("user email:" + list.get(0));
+        return list.get(0);
     }
 
     @Override
@@ -45,10 +47,10 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User findUserBySurname(String surname) {
+    public User findUserBySurname(String email) {
         return (User) currentSession()
-                .createQuery("select u from User u where u.surname=:surname")
-                .setParameter("surname", surname)
+                .createQuery("select u from User u where u.email=:email")
+                .setParameter("email", email)
                 .uniqueResult();
     }
 

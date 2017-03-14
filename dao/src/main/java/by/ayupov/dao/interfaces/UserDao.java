@@ -8,10 +8,10 @@ public interface UserDao extends BaseDao<User> {
 
     /**
      * this method is needed to find user by name and use for registration
-     * @param name
+     * @param email
      * @return
      */
-    User findUserByName(String name);
+    User findUserByName(String email);
 
     /**
      *  this method is needed to pagination user on page

@@ -3,30 +3,31 @@ package by.ayupov;
 import by.ayupov.dao.impl.UserDaoImpl;
 import by.ayupov.entity.User;
 import lombok.extern.java.Log;
-import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import static org.junit.Assert.*;
-
-@Log
 @ContextConfiguration("/spring-dao-test.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
-@Transactional
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
+@Transactional
+@Log
 public class TestUser {
 
     @Autowired
-    private UserDaoImpl userDaoImpl;
+    private UserDaoImpl userDao;
 
-    public User initUser() {
+    @Test
+    public void find() {
+        User user = userDao.findUserByName("ayub94.mogilev@gmail.com");
+        log.info("User email:" + user.getPassword());
+    }
+
+   /* public User initUser() {
         User user = new User();
         user.setId(9);
         user.setName("Вадим");
@@ -36,13 +37,13 @@ public class TestUser {
         return user;
     }
 
-    @Test
+   /* @Test
     public void addUser() {
         User user = initUser();
         userDaoImpl.add(user);
     }
 
-  @After
+    @After
     public void testDelete() {
         List<User> list = userDaoImpl.getAll();
         int size = list.size();
@@ -78,5 +79,5 @@ public class TestUser {
         testUser = userDaoImpl.findUserByPhone(user.getPhoneNumber());
         log.info("Test user phone: " + testUser.getPhoneNumber());
         assertEquals(user.getPhoneNumber(), testUser.getPhoneNumber());
-    }
+    }*/
 }

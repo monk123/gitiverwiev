@@ -26,15 +26,15 @@ public class AddressDaoImpl implements AddressDao {
     }
 
     public Session currentSession() {
-        return sessionFactory.getCurrentSession();
-    }
+         return sessionFactory.getCurrentSession();
+     }
 
     @Override
     public List<String> findCityByUser(String name) {
-        return currentSession().createQuery("select a.city from Address a where user.name=:name")
-                .setParameter("name", name)
-                .list();
-    }
+         return currentSession().createQuery("select a.city from Address a where user.name=:name")
+                 .setParameter("name", name)
+                 .list();
+     }
 
     @Override
     public List<String> findCountryByUser(String name) {
@@ -91,3 +91,4 @@ public class AddressDaoImpl implements AddressDao {
         if (address != null) currentSession().delete(address);
     }
 }
+

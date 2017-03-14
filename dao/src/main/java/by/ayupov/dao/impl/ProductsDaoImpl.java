@@ -1,11 +1,16 @@
 package by.ayupov.dao.impl;
 
 import by.ayupov.dao.interfaces.ProductDao;
+import by.ayupov.dao.interfaces.ProductRepository;
 import by.ayupov.entity.Product;
 import lombok.extern.java.Log;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,6 +24,7 @@ import java.util.List;
 @Log
 public class ProductsDaoImpl implements ProductDao {
     private SessionFactory sessionFactory;
+    private ProductRepository productRepository;
 
     @Autowired
     public ProductsDaoImpl(SessionFactory sessionFactory) {
@@ -50,7 +56,7 @@ public class ProductsDaoImpl implements ProductDao {
 
     @Override
     public void add(Product entity) {
-        currentSession().save(entity);
+        currentSession().saveOrUpdate(entity);
     }
 
     @Override
@@ -64,9 +70,9 @@ public class ProductsDaoImpl implements ProductDao {
         if (product != null) currentSession().delete(product);
     }
 
-    public List<Product> getPaginationProductByCategory(String categoryName, int firstResult, int maxResult) {
-       return currentSession().createQuery("from Product p where p.categoryName=:categoryName")
-                .setParameter("categoryName", categoryName)
+    public List<Product> getPaginationProductByCategory(int number, int firstResult, int maxResult) {
+       return currentSession().createQuery("from Product p where p.categoryNumber=:number")
+                .setParameter("number", number)
                 .setFirstResult(firstResult)
                 .setMaxResults(maxResult)
                 .list();
@@ -74,6 +80,6 @@ public class ProductsDaoImpl implements ProductDao {
 
     @Override
     public List<Product> findProductByCategory() {
-        return currentSession().createQuery("select distinct p.categoryName from Product p").list();
+        return currentSession().createQuery("select distinct p.categoryNumber from Product p").list();
     }
 }

@@ -15,7 +15,7 @@ import java.util.Date;
 @Entity
 @Table(name = "orders")
 public class Order extends BaseEntity {
-    public static final long serialVersionUID = 7L;
+    public static final long serialVersionUID = 4L;
 
     @Column(name = "ORDER_NUMBER")
     private int orderNumber;

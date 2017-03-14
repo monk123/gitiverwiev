@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "address")
 public class Address extends BaseEntity {
-    private static final long serialVersionUID = 9L;
+    private static final long serialVersionUID = 6L;
 
     @Column(name =  "COUNTRY")
     private String country;

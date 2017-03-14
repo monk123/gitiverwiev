@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="utf-8" contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -31,6 +32,7 @@
             <th>Description</th>
             <th>Price</th>
             <th>Category</th>
+            <th>Category Number</th>
             <th>Photo</th>
             <th>Edit</th>
             <th>Delete</th>
@@ -46,6 +48,7 @@
             <td>${product.description}</td>
             <td>${product.price}</td>
             <td>${product.categoryName}</td>
+            <td>${product.categoryNumber}</td>
             <td><img src="${product.photo}"/></td>
             <td><a href="<c:url value="/edit/${product.id}"/>">Edit</a></td>
             <td><a href="<c:url value="/remove/${product.id}"/>">Delete</a></td>
@@ -65,7 +68,7 @@
                        <tr>
                            <td>
                                <s:label path="id">
-                                   ID
+                                   <spring:message text="ID"/>
                                </s:label>
                            </td>
                            <td>
@@ -76,7 +79,7 @@
                    </c:if>
                 <tr>
                     <td>
-                        <s:label path="name">Name</s:label>
+                        <s:label path="name"><spring:message text="Name"/></s:label>
                     </td>
                     <td>
                         <s:input path="name" />
@@ -84,7 +87,7 @@
                 </tr>
                    <tr>
                        <td>
-                           <s:label path="article">Article</s:label>
+                           <s:label path="article"><spring:message text="Article"/></s:label>
                        </td>
                        <td>
                            <s:input path="article"/>
@@ -92,7 +95,7 @@
                    </tr>
                    <tr>
                        <td>
-                           <s:label path="description">Description</s:label>
+                           <s:label path="description"><spring:message text="Description"/></s:label>
                        </td>
                        <td>
                            <s:input path="description"/>
@@ -100,7 +103,7 @@
                    </tr>
                    <tr>
                        <td>
-                           <s:label path="productCount">Count</s:label>
+                           <s:label path="productCount"><spring:message text="Count"/></s:label>
                        </td>
                        <td>
                            <s:input path="productCount"/>
@@ -108,15 +111,21 @@
                    </tr>
                    <tr>
                        <td>
-                           <s:label path="categoryName">Category Name</s:label>
+                           <s:label path="categoryName"><spring:message text="Category Name"/></s:label>
                        </td>
                        <td>
                            <s:input path="categoryName"/>
                        </td>
+                       <td>
+                           <s:label path="categoryNumber"><spring:message text="Category Number"/></s:label>
+                       </td>
+                       <td>
+                           <s:input path="categoryNumber"/>
+                       </td>
                    </tr>
                    <tr>
                        <td>
-                           <s:label path="price">Price</s:label>
+                           <s:label path="price"><spring:message text="Price"/></s:label>
                        </td>
                        <td>
                            <s:input path="price"/>
@@ -124,7 +133,7 @@
                    </tr>
                    <tr>
                        <td>
-                           <s:label path="photo">Photo</s:label>
+                           <s:label path="photo"><spring:message text="Photo"/></s:label>
                        </td>
                        <td>
                            <s:input type="text" path="photo"/>
@@ -135,11 +144,11 @@
                 <tr>
                     <td>
                         <c:if test="${!empty product.name}">
-                            <input type="submit">Edit</input>
+                            <input type="submit" value="<spring:message text="Edit"/>"/>
                         </c:if>
 
                         <c:if test="${empty product.name}">
-                            <input type="submit">Add</input>
+                            <input type="submit" value="<spring:message text="Add"/>"/>
                         </c:if>
                     </td>
                 </tr>
